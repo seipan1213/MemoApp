@@ -7,7 +7,7 @@
         @csrf
         <div class="form-group">
             <textarea class="form-control mb-3" name="content" rows="3" placeholder="ここにメモを入力"></textarea>
-            <input type="file" name="image" id="input-image"/>
+            <input type="file" class="mb-3" name="image" id="input-image"/>
         </div>
         @error('content')
             <div class="alert alert-danger">メモ内容を入力してください</div>
