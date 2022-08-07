@@ -10,8 +10,10 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
+    <link href="/css/layout.css" rel="stylesheet">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -75,28 +77,28 @@
 
         <main class="py-4">
             <div class="row">
-                <div class="col-md-2 p-0">
+                <div class="col-sm-12 col-md-2 p-0">
                     <div class="card">
                         <div class="card-header">タグ一覧</div>
-                        <div class="card-body">
+                        <div class="card-body my-card-body">
                             <a href="/" class="card-text d-block">全て表示</a>
                             @foreach ($tags as $tag)
-                                <a href="/?tag={{ $tag['id'] }}" class="card-text d-block">{{ $tag['name'] }}</a>
+                                <a href="/?tag={{ $tag['id'] }}" class="card-text d-block elipsis mb-2">{{ $tag['name'] }}</a>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 p-0">
+                <div class="col-sm-12 col-md-4 p-0">
                     <div class="card">
-                        <div class="card-header">メモ一覧</div>
-                        <div class="card-body">
+                        <div class="card-header d-flex justify-content-between">メモ一覧 <a href="{{ route('home') }}"><i class="fas fa-plus-circle"></i></a></div>
+                        <div class="card-body  my-card-body">
                             @foreach ($memos as $memo)
-                                <a href="/edit/{{ $memo['id'] }}" class="card-text d-block">{{ $memo['content'] }}</a>
+                                <a href="/edit/{{ $memo['id'] }}" class="card-text d-block elipsis mb-2">{{ $memo['content'] }}</a>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 p-0">
+                <div class="col-sm-12 col-md-6 p-0">
                     @yield('content')
                 </div>
             </div>
