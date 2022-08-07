@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/38822155/183289935-02466684-03bd-4dcd-9db3-33e5163d9aeb.png)
+
 # setup
 ```
 create DB (memo-app)
