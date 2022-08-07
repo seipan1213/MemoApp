@@ -15,9 +15,14 @@
     </div>
     <form class="card-body  my-card-body" action="{{ route('update') }}" method="POST">
         @csrf
+        <div class="image">
+            @if (!empty($edit_memo[0]['image']))
+                <img class="w-25 h-25 mb-3" src="{{ asset('storage/image/'. $edit_memo[0]['image']) }}"/>
+            @endif
+        </div>
         <input type="hidden" name="memo_id" value="{{ $edit_memo[0]['id'] }}"/>
         <div class="form-group">
-            <textarea class="form-control" name="content" rows="3" placeholder="ここにメモを入力">{{ $edit_memo[0]['content'] }}</textarea>
+            <textarea class="form-control mb-3" name="content" rows="3" placeholder="ここにメモを入力">{{ $edit_memo[0]['content'] }}</textarea>
             @error('content')
                 <div class="alert alert-danger">メモ内容を入力してください</div>
             @enderror

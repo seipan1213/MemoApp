@@ -36,10 +36,16 @@ class HomeController extends Controller
     {
         $posts = $request->all();
         $request->validate(['content' => 'required']);
-
-        DB::transaction(function () use($posts) {
-            $memo_id = Memo::insertGetId(['content' => $posts['content'], 'user_id' => Auth::id()]);
+        DB::transaction(function () use($posts, $request) {
             $tag_exists = Tag::where('user_id', '=', Auth::id())->where('name', '=', $posts['new_tag'])->exists();
+
+            if (!empty($posts['image'])){
+                $img_path = $request->file('image')->store('public/image');
+                $memo_id = Memo::insertGetId(['content' => $posts['content'], 'user_id' => Auth::id(),'image' => basename($img_path)]);
+            }
+            else{
+                $memo_id = Memo::insertGetId(['content' => $posts['content'], 'user_id' => Auth::id()]);
+            }
 
             if ((!empty($posts['new_tag']) || $posts['new_tag'] === "0")&& !$tag_exists){
                 $tag_id = Tag::insertGetId(['user_id'=>Auth::id(), 'name' => $posts['new_tag']]);
